@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 const app = express();
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 4000 || 5000
 
 app.use(cors()) //Habilita o CORS-Cross-origin resource sharing
 app.use(express.urlencoded({extended: true}));
@@ -16,7 +16,7 @@ app.use("/funcionarios", rotasFuncionarios)
 app.get('/', (req, res) => {
   res.status(200).json({
       mensagem: 'API 100% funcional!👏',
-      versao: '1.0.3'
+      versao: '1.0.4'
   })
 })
 

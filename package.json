@@ -1,6 +1,6 @@
 {
   "name": "backendfuncionario",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Backend Funcionario ",
   "type": "module",
   "main": "src/server.js",

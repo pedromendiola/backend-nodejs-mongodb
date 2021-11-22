@@ -47,7 +47,7 @@ db.createCollection('funcionario', {
                 }
                 /*salario: {
                 bsonType: [ 'double' ],
-                description: 'O salário deve ser um valor numérico'
+                description: 'O salário deve ser um valor numérico'//estava dando erro de doc invalido na hora de dar insertOne neste campo 
              }*/
             }
         }
