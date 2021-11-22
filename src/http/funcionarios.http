@@ -1,5 +1,5 @@
-//Teste de Requisições REST - Funcionarios
-@baseURL = http://localhost:4000
+//Teste de Requisições REST - Funcionarios http://localhost:4000
+@baseURL = https://funcionariobackend.herokuapp.com
 @id = 619b9ad975b4d67140e2ab52
 
 ###
