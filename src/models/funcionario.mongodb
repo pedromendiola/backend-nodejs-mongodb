@@ -1,0 +1,78 @@
+
+//Selecione o database
+use('LabBD');
+
+// Remove a collection
+db.funcionario.drop() 
+//Cria a collection com a validação do schema
+db.createCollection('funcionario', {
+  validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['nome', 'cargo', 'telefone','endereço', 'cpf','rg'/*,'salario'*/],
+            properties: {
+                nome: {
+                    bsonType: 'string',
+                    description: 'Nome do funcionário é obrigatório'
+                },
+                cargo: {
+                    bsonType: 'string',
+                    description: 'O cargo é obrigatório'
+                },
+                telefone: {
+                    bsonType: 'string',
+                    description: 'O telefone é obrigatório'
+                },
+                endereço: {
+                bsonType: 'object',
+                required: [ 'municipio' ],
+                properties: {
+                   logradouro: {
+                      bsonType: 'string',
+                      description: 'O logradouro deve ser um campo texto'
+                   },
+                   municipio: {
+                      bsonType: 'string',
+                      description: 'O munícipio é obrigatório'
+                   }
+                }
+            },
+                cpf: {
+                    bsonType: 'string',
+                    description: 'O CPF é obrigatório'
+                },
+                rg: {
+                    bsonType: 'string',
+                    description: 'O RG é obrigatório'
+                }
+                /*salario: {
+                bsonType: [ 'double' ],
+                description: 'O salário deve ser um valor numérico'
+             }*/
+            }
+        }
+    },
+    validationLevel: 'strict', //moderate or off
+    validationAction: 'error' //warn
+})
+
+//Insere um novo registro
+db.funcionario.insertOne({
+   'nome': 'Edu Enrique',
+   'cargo': 'CEO',
+   'telefone': '333333',
+   'endereço': {
+      'logradouro':'Av.Itavuvu, 12111',
+      'municipio':'Sorocaba'
+      },
+   'cpf': '222.222.222-22',
+   'rg': '11.111.111-3',
+   //'salario': 5000
+})
+//Lista todos os registros
+db.funcionario.find()
+
+//Lista um registro pelo Id
+db.funcionario.find({"_id": {$eq: ObjectId("619b7942eb088b0ad56b326b")}})
+//por nome 
+db.funcionario.find({nome: /pedro/i})
